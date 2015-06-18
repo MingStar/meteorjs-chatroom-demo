@@ -15,7 +15,7 @@
 <template name="messageList">
   <div class="messages">
     {{#each messages}}
-      <p>
+      <p class="{{messageClass}}">
         {{username}}: {{text}} - {{createdAt}}
       </p>
     {{/each}}

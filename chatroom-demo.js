@@ -17,6 +17,9 @@ if (Meteor.isClient) {
   Template.messageList.helpers({
     messages: function () {
       return Messages.find();
+    },
+    messageClass: function() {
+      return this.username == "system" ? "system" : "";
     }
   });
 
