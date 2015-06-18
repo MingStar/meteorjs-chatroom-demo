@@ -4,4 +4,27 @@
 
 <body>
   {{> loginButtons}}
+  {{#if currentUser}}
+    <hr>
+    {{> messageList}}
+    <hr>
+    {{> sendMessage}}
+  {{/if}}
 </body>
+
+<template name="messageList">
+  <div class="messages">
+    {{#each messages}}
+      <p>
+        {{username}}: {{text}} - {{createdAt}}
+      </p>
+    {{/each}}
+  </div>
+</template>
+
+<template name="sendMessage">
+  <form id="send-message">
+    <input type="text" name="text" placeholder="Write a message" />
+    <input type="submit" value="Send message" />
+  </form>
+</template>

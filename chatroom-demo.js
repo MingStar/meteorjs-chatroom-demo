@@ -1,4 +1,25 @@
+Messages = new Meteor.Collection('messages');
+
 if (Meteor.isClient) {
+  Template.sendMessage.events({
+    "submit #send-message": function (event, template) {
+      var message = event.target.text.value;
+      Messages.insert({
+        username: Meteor.user().username,
+        text: message,
+        createdAt: new Date()
+      });
+      event.target.text.value = "";
+      return false; // prevent default form submit
+    }
+  });
+
+  Template.messageList.helpers({
+    messages: function () {
+      return Messages.find();
+    }
+  });
+
   Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"
   });
